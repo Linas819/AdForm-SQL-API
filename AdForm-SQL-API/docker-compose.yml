@@ -3,4 +3,34 @@ services:
     image: ${DOCKER_REGISTRY-}adformsqlapi
     build:
       context: .
-      dockerfile: AdForm-SQL-API\Dockerfile
+      dockerfile: AdForm-SQL-API/Dockerfile
+    ports:
+      - "5000:5000"
+      - "5001:5001"
+  postgresdb:
+    image: postgres:latest
+    container_name: postgresdb
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+        POSTGRES_DB: AdFormSQL
+        POSTGRES_USER: postgres
+        POSTGRES_PASSWORD: admin
+    volumes:
+      - AdForm_PostgrSQL_SQL_volume:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+        - "8081:80"
+    environment:
+        PGADMIN_DEFAULT_EMAIL: linas.suchockas@gmail.com
+        PGADMIN_DEFAULT_PASSWORD: admin
+    user: '$UID:$GID'
+    volumes:
+        - AdForm_PostgrSQL_SQL_volume:/var/lib/pgadmin
+volumes:
+    AdForm_PostgrSQL_SQL_volume:
+        external: true
