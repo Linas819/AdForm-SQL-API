@@ -1,0 +1,6 @@
+services:
+  adform-sql-api:
+    image: ${DOCKER_REGISTRY-}adformsqlapi
+    build:
+      context: .
+      dockerfile: AdForm-SQL-API\Dockerfile
