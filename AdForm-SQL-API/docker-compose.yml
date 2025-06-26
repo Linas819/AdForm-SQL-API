@@ -19,18 +19,6 @@ services:
         POSTGRES_PASSWORD: admin
     volumes:
       - AdForm_PostgrSQL_SQL_volume:/var/lib/postgresql/data
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin4_container
-    restart: always
-    ports:
-        - "8081:80"
-    environment:
-        PGADMIN_DEFAULT_EMAIL: linas.suchockas@gmail.com
-        PGADMIN_DEFAULT_PASSWORD: admin
-    user: '$UID:$GID'
-    volumes:
-        - AdForm_PostgrSQL_SQL_volume:/var/lib/pgadmin
 volumes:
     AdForm_PostgrSQL_SQL_volume:
         external: true

@@ -1,7 +1,5 @@
-﻿using AdForm_SQL_API.AdFormDB;
-using AdForm_SQL_API.Models;
+﻿using AdForm_SQL_API.Models;
 using AdForm_SQL_API.Services;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace AdForm_SQL_API.Controllers
@@ -15,26 +13,57 @@ namespace AdForm_SQL_API.Controllers
         {
             _adFormService = adFormService;
         }
-
+        /// <summary>
+        /// Get details about a given order's total price and products: name, category, quantity, price
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     GET /AdForm
+        ///     {
+        ///         "orderId": "ord1"
+        ///     }
+        /// </remarks>
+        /// <param name="orderId"></param>
+        /// <response code="400">Missing order id</response>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult GetOrder(string orderId)
         {
-            Invoice invoice = _adFormService.GetOrders(orderId);
+            InvoiceResponse invoice = _adFormService.GetOrders(orderId);
             return (Ok(new
             {
-                Success = true,
-                Data = invoice
+                Success = invoice.Success,
+                Products = invoice.Products,
+                TotalPrice = invoice.TotalPrice,
+                Messege = invoice.Message
             }));
         }
+        /// <summary>
+        /// Get order distrubution details by a given city or all cities
+        /// </summary>
+        /// <remarks>
+        /// Sample request:
+        /// 
+        ///     GET /AdForm
+        ///     {
+        ///         "city": "British",
+        ///         "order": true
+        ///     }
+        /// </remarks>
+        /// <param name="city"></param>
+        /// <param name="order"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("orderDistribution")]
         public IActionResult GetOrdersByCustomer(string city="", bool order=false)
         {
-            List<OrderDistribution> orderDistributions = _adFormService.GetOrderDistributio(city, order);
+            OrderDistributionResponse response = _adFormService.GetOrderDistribution(city, order);
             return (Ok(new
             {
-                Success = true,
-                Data = orderDistributions
+                Success = response.Success,
+                OrderDistribution = response.OrderDistributions,
+                Messege = response.Message
             }));
         }
     }
