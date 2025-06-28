@@ -21,7 +21,7 @@ namespace AdForm_SQL_API.Controllers
         /// 
         ///     GET /AdForm
         ///     {
-        ///         "orderId": "ord1"
+        ///         "orderId": "ord11766"
         ///     }
         /// </remarks>
         /// <param name="orderId"></param>
@@ -40,7 +40,7 @@ namespace AdForm_SQL_API.Controllers
             }));
         }
         /// <summary>
-        /// Get order distrubution details by a given city or all cities
+        /// Get order distrubution details by a given city or all cities if no city is provided
         /// </summary>
         /// <remarks>
         /// Sample request:

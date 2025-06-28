@@ -6,7 +6,7 @@
         public float TotalPrice { get; set; }
         public List<InvoiceResponseOrderProduct>? Products { get; set; }
         public string Message { get; set; } = "Data recieved";
-    public class InvoiceResponseOrderProduct
+        public class InvoiceResponseOrderProduct
         {
             public string Name { get; set; } = "";
             public string Category { get; set; } = "";
