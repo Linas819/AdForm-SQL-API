@@ -1,5 +1,6 @@
 using AdForm_SQL_API.AdFormDB;
 using AdForm_SQL_API.Services;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
 
@@ -8,7 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<AdFormSqlContext>();
+
+var connectionString = builder.Configuration.GetConnectionString("PostgreContainer") ??
+        throw new InvalidOperationException("Connection string 'PostgreContainer' not found");
+builder.Services.AddDbContext<AdFormSqlContext>(options => options.UseNpgsql(connectionString));
+
 builder.Services.AddScoped<AdFormService, AdFormService>();
 builder.Services.AddEndpointsApiExplorer();
 

@@ -45,7 +45,8 @@ namespace AdForm_SQL_API.Controllers
         /// <remarks>
         /// Sample request:
         /// 
-        ///     GET /AdForm
+        ///     GET /AdForm/OrderDistribution
+
         ///     {
         ///         "city": "British",
         ///         "order": true
@@ -55,7 +56,7 @@ namespace AdForm_SQL_API.Controllers
         /// <param name="order"></param>
         /// <returns></returns>
         [HttpGet]
-        [Route("orderDistribution")]
+        [Route("OrderDistribution")]
         public IActionResult GetOrdersByCustomer(string city="", bool order=false)
         {
             OrderDistributionResponse response = _adFormService.GetOrderDistribution(city, order);
