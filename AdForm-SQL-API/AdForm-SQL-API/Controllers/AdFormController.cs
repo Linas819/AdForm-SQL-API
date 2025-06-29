@@ -30,6 +30,7 @@ namespace AdForm_SQL_API.Controllers
         [HttpGet]
         public IActionResult GetOrder(string orderId)
         {
+            // One object that has all the nessecary information the can then be returned to the frontend
             InvoiceResponse invoice = _adFormService.GetOrders(orderId);
             return (Ok(new
             {
@@ -59,6 +60,7 @@ namespace AdForm_SQL_API.Controllers
         [Route("OrderDistribution")]
         public IActionResult GetOrdersByCustomer(string city="", bool order=false)
         {
+            // One object that has all the nessecary information the can then be returned to the frontend
             OrderDistributionResponse response = _adFormService.GetOrderDistribution(city, order);
             return (Ok(new
             {

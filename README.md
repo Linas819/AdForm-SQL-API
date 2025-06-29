@@ -11,7 +11,8 @@ A .NET API project with PostgreSQL and Docker for [Order Management SQL Exercise
 5. .NET 8.0
 6. xUnit test.
 7. Moq .NET: a data mocking tool.
-8. JavaScript and [Faker](https://fakerjs.dev/) library for generating realistic mock data and SQL scripts to upload the data to PostgreSQL database
+8. JavaScript and [Faker](https://fakerjs.dev/) library for generating realistic mock data and SQL scripts to upload the data to PostgreSQL database.
+9. Swagger API teting tool.
 
 ## Tasks and time duration
 Database set up: 30 min.</br>
